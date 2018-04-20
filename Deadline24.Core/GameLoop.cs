@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Deadline24.Core.Commands;
 using Deadline24.Core.Exceptions;
+using Deadline24.Core.Visualization;
 
 namespace Deadline24.Core
 {
@@ -10,12 +11,15 @@ namespace Deadline24.Core
 
         private readonly Client _client;
 
+        private readonly IVisualizer _visualizer;
+
         private readonly CommandFactory _commandFactory;
 
-        public GameLoop(IGame game, Client client)
+        public GameLoop(IGame game, Client client, IVisualizer visualizer)
         {
             _game = game;
             _client = client;
+            _visualizer = visualizer;
             _commandFactory = new CommandFactory(_client, game.CommandFactories);
         }
 
@@ -31,7 +35,7 @@ namespace Deadline24.Core
                 {
                     try
                     {
-                        _game.Update(_commandFactory);
+                        _game.Update(_commandFactory, _visualizer);
                     }
                     catch (ServerExceptionBase exception)
                     {
