@@ -15,6 +15,21 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -103,6 +118,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarStatusControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CarStatusControl.Designer.cs">
+      <DependentUpon>CarStatusControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -112,15 +133,30 @@
     <Compile Include="RocketScience\City.cs" />
     <Compile Include="RocketScience\Commands\CarsCommand.cs" />
     <Compile Include="RocketScience\Commands\DescribeWorldCommand.cs" />
+    <Compile Include="RocketScience\Commands\FoundRocketCommand.cs" />
+    <Compile Include="RocketScience\Commands\GiveCommand.cs" />
     <Compile Include="RocketScience\Commands\HomeCommand.cs" />
     <Compile Include="RocketScience\Commands\LoadWorldCommand.cs" />
     <Compile Include="RocketScience\Commands\MoveCommand.cs" />
+    <Compile Include="RocketScience\Commands\RoadStatusCommand.cs" />
+    <Compile Include="RocketScience\Commands\RocketInfoCommand.cs" />
+    <Compile Include="RocketScience\Commands\TakeCommand.cs" />
+    <Compile Include="RocketScience\Commands\TimeToEndCommand.cs" />
+    <Compile Include="RocketScience\Commands\UpgradeCarCommand.cs" />
     <Compile Include="RocketScience\Game.cs" />
+    <Compile Include="RocketScience\Responses\FoundRocketResponse.cs" />
+    <Compile Include="RocketScience\Responses\GiveResponse.cs" />
+    <Compile Include="RocketScience\Responses\RocketInfoResponse.cs" />
+    <Compile Include="RocketScience\Responses\TakeResponse.cs" />
+    <Compile Include="RocketScience\Responses\UpgradeCarResponse.cs" />
+    <Compile Include="RocketScience\RocketScienceGameState.cs" />
     <Compile Include="RocketScience\MapGraph.cs" />
     <Compile Include="RocketScience\Responses\CarsResponse.cs" />
     <Compile Include="RocketScience\Responses\DescribeWorldResponse.cs" />
     <Compile Include="RocketScience\Responses\HomeResponse.cs" />
     <Compile Include="RocketScience\Responses\MoveResponse.cs" />
+    <Compile Include="RocketScience\Responses\RoadStatusResponse.cs" />
+    <Compile Include="RocketScience\Responses\TimeToEndResponse.cs" />
     <Compile Include="RocketScience\Responses\WorldResponse.cs" />
     <Compile Include="RocketScience\Road.cs" />
     <Compile Include="RocketScience\RouteFinder.cs" />
@@ -130,11 +166,8 @@
     <Compile Include="VisualizationForm.Designer.cs">
       <DependentUpon>VisualizationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WildWildSpace\Responses\DescribeWorld.cs" />
-    <Compile Include="WildWildSpace\Commands\DescribeWorldCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WildWildSpace\Game.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -153,9 +186,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CarStatusControl.resx">
+      <DependentUpon>CarStatusControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VisualizationForm.resx">
       <DependentUpon>VisualizationForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

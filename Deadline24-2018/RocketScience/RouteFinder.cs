@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Deadline24.ConsoleApp.RocketScience.Responses;
 
 namespace Deadline24.ConsoleApp.RocketScience
 {
@@ -14,79 +16,59 @@ namespace Deadline24.ConsoleApp.RocketScience
             _startCity = startCity;
         }
 
-        public IList<Route> FindRoutes(int maxCost)
+        public IList<Route> FindRoutes(double maxCost, RoadStatusResponse knownRoads)
         {
             _bestRoutes = new List<Route>();
 
-            FindBestRoutes(_startCity, maxCost, 0, new List<Road>());
+            FindBestRoutes(_startCity, maxCost, 0, new List<Road>(), knownRoads);
 
             return _bestRoutes;
         }
 
-        public Route FindClosestBaseCity()
+        public Route FindClosestBaseCity(RoadStatusResponse knownRoads)
         {
-            return new Route(FindShortestRoad(_startCity), 0);
+            return new Route(FindShortestRoad(_startCity, knownRoads, 0), 0);
         }
 
-        private IList<Road> FindShortestRoad(City fromCity)
+        private IList<Road> FindShortestRoad(City fromCity, RoadStatusResponse knownRoads, int iteration)
         {
-            var stack = new Stack<List<Road>>();
-            var currentCity = fromCity;
-
-            while (true)
+            if (iteration > 4)
             {
-                foreach (var currentRoad in currentCity.Roads)
-                {
-                    if (currentRoad.To.IsBaseCity)
-                    {
-                        var route = stack.Pop();
-                        route.Add(currentRoad);
-
-                        return route;
-                    }
-
-                    
-                }
+                return new List<Road>();
             }
 
-            //    foreach (var road in fromCity.Roads.Reverse())
-            //    {
-            //        if (road.To.IsBaseCity)
-            //        {
-            //            return new List<Road> { road };
-            //        }
+            foreach (var road in fromCity.Roads.Reverse())
+            {
+                if (road.To.IsBaseCity)
+                {
+                    return new List<Road> { road };
+                }
 
-            //        var route = new List<Road> { road };
-            //        route.AddRange(FindShortestRoad(road.To));
+                var route = new List<Road> { road };
+                var foundRoute = FindShortestRoad(road.To, knownRoads, iteration + 1);
+                if (!foundRoute.Any())
+                {
+                    continue;
+                }
 
-            //        return route;
-            //    }
+                route.AddRange(foundRoute);
 
-            //    return new List<Road>();
+                return route;
+            }
+
+            return new List<Road>();
         }
 
-        //private IList<Road> FindShortestRoad(City fromCity)
-        //{
-        //    foreach (var road in fromCity.Roads.Reverse())
-        //    {
-        //        if (road.To.IsBaseCity)
-        //        {
-        //            return new List<Road> { road };
-        //        }
-
-        //        var route = new List<Road> { road };
-        //        route.AddRange(FindShortestRoad(road.To));
-
-        //        return route;
-        //    }
-
-        //    return new List<Road>();
-        //}
-
-        private bool FindBestRoutes(City fromCity, int maxCost, int currentCost, IList<Road> roads)
+        private bool FindBestRoutes(City fromCity, double maxCost, double currentCost, IList<Road> roads, RoadStatusResponse knownRoads)
         {
             foreach (var road in fromCity.Roads)
             {
+
+                if (_bestRoutes.Count > 10)
+                {
+                    return false;
+                }
+
                 // Do not return to the same city
                 var lastRoad = roads.LastOrDefault();
                 if (road.To.Id == lastRoad?.From.Id)
@@ -100,7 +82,11 @@ namespace Deadline24.ConsoleApp.RocketScience
                     continue;
                 }
 
-                var newCost = currentCost + road.BaseCost;
+                var routeDetails = knownRoads.RoadStatuses.FirstOrDefault( r =>
+                            (r.FromCityId == road.From.Id && r.ToCityId == road.To.Id) ||
+                            (r.FromCityId == road.To.Id && r.ToCityId == road.From.Id));
+
+                var newCost = currentCost + CalculateRouteCost(road.BaseCost, routeDetails);
                 if (newCost > maxCost)
                 {
                     continue;
@@ -115,7 +101,7 @@ namespace Deadline24.ConsoleApp.RocketScience
                 var newRoads = new List<Road>(roads) { road };
                 currentCost = newCost;
 
-                if (FindBestRoutes(road.To, maxCost, currentCost, newRoads))
+                if (FindBestRoutes(road.To, maxCost, currentCost, newRoads, knownRoads))
                 {
                     _bestRoutes.Add(new Route(newRoads, currentCost));
                 }
@@ -124,14 +110,19 @@ namespace Deadline24.ConsoleApp.RocketScience
             return false;
         }
 
+        public static double CalculateRouteCost(int routeCost, RoadStatusEntity roadDetails)
+        {
+            return Math.Max(3, roadDetails == null ? routeCost : roadDetails.TotalCost - roadDetails.TravelBonus);
+        }
+
         public class Route : List<Road>
         {
-            public Route(IEnumerable<Road> roads, int totalCost) : base(roads)
+            public Route(IEnumerable<Road> roads, double totalCost) : base(roads)
             {
                 TotalCost = totalCost;
             }
 
-            public int TotalCost { get; }
+            public double TotalCost { get; }
         }
     }
 }

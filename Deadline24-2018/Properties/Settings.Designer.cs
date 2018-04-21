@@ -73,7 +73,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UseVisualization {
             get {
                 return ((bool)(this["UseVisualization"]));

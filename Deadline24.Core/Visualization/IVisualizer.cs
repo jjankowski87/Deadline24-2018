@@ -1,7 +1,7 @@
 ﻿namespace Deadline24.Core.Visualization
 {
-    public interface IVisualizer
+    public interface IVisualizer<T>
     {
-        void DisplayWorld(World world);
+        void UpdateGameState(T gameState);
     }
 }

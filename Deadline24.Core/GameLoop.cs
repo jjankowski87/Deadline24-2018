@@ -5,17 +5,17 @@ using Deadline24.Core.Visualization;
 
 namespace Deadline24.Core
 {
-    public class GameLoop
+    public class GameLoop<T>
     {
-        private readonly IGame _game;
+        private readonly IGame<T> _game;
 
         private readonly Client _client;
 
-        private readonly IVisualizer _visualizer;
+        private readonly IVisualizer<T> _visualizer;
 
         private readonly CommandFactory _commandFactory;
 
-        public GameLoop(IGame game, Client client, IVisualizer visualizer)
+        public GameLoop(IGame<T> game, Client client, IVisualizer<T> visualizer)
         {
             _game = game;
             _client = client;

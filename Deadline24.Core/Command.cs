@@ -17,6 +17,16 @@ namespace Deadline24.Core
 
         public abstract TResponse SendCommand();
 
+        protected int? ParseNullableInt(string[] response, int index)
+        {
+            if (response[index] == "NONE")
+            {
+                return null;
+            }
+
+            return ParseInt(response, index);
+        }
+
         protected int ParseInt(string[] response, int index)
         {
             int result;
@@ -26,6 +36,21 @@ namespace Deadline24.Core
             }
 
             throw new InvalidResponseException(response[index], $"Item at index {index} is not integer.");
+        }
+
+        protected bool ParseBool(string[] response, int index)
+        {
+            if (response[index] == "N")
+            {
+                return false;
+            }
+
+            if (response[index] == "Y")
+            {
+                return true;
+            }
+
+            throw new InvalidResponseException(response[index], $"Item at index {index} is not boolean (Y/N).");
         }
 
         protected double ParseDouble(string[] response, int index)

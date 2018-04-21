@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using Deadline24.ConsoleApp.RocketScience;
 using Deadline24.Core;
 using Deadline24.Core.Visualization;
 
@@ -17,11 +18,11 @@ namespace Deadline24.ConsoleApp
             }
             else
             {
-                RunConsole(new NullVisualizer());
+                RunConsole(new NullVisualizer<RocketScienceGameState>());
             }
         }
 
-        private static void RunConsole(IVisualizer visualizer)
+        private static void RunConsole(IVisualizer<RocketScienceGameState> visualizer)
         {
             var server = Properties.Settings.Default.Server;
             var port = Properties.Settings.Default.Port;
@@ -31,7 +32,7 @@ namespace Deadline24.ConsoleApp
             using (var client = new Client(server, port, user, password))
             {
                 var game = new RocketScience.Game();
-                var gameloop = new GameLoop(game, client, visualizer);
+                var gameloop = new GameLoop<RocketScienceGameState>(game, client, visualizer);
 
                 Console.WriteLine($"#### Game started at port {port} ####");
                 gameloop.Start();

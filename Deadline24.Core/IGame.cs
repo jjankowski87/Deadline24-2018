@@ -5,9 +5,9 @@ using Deadline24.Core.Visualization;
 
 namespace Deadline24.Core
 {
-    public interface IGame
+    public interface IGame<T>
     {
-        void Update(CommandFactory commandFactory, IVisualizer visualizer);
+        void Update(CommandFactory commandFactory, IVisualizer<T> visualizer);
 
         void HandleException(ServerExceptionBase exception);
 

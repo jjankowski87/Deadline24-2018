@@ -1,8 +1,8 @@
 ﻿namespace Deadline24.Core.Visualization
 {
-    public class NullVisualizer : IVisualizer
+    public class NullVisualizer<T> : IVisualizer<T>
     {
-        public void DisplayWorld(World world)
+        public void UpdateGameState(T gameState)
         {
             // Do nothing
         }
