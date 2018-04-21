@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Responses\Timeout.cs" />
+    <Compile Include="Visualization\GameState.cs" />
     <Compile Include="Visualization\IVisualizer.cs" />
     <Compile Include="Visualization\NullVisualizer.cs" />
     <Compile Include="Visualization\World.cs" />

@@ -43,7 +43,7 @@ namespace Deadline24.ConsoleApp.WildWildSpace
             Console.WriteLine(exception.Message);
         }
 
-        public void HandleTimeout(float timeout)
+        public void HandleTimeout(double timeout)
         {
             Console.WriteLine($"Command limit reached, waiting {timeout} seconds.");
             Thread.Sleep((int)timeout * 1000);

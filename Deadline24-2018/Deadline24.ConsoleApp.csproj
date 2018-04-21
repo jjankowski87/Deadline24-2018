@@ -108,6 +108,22 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RocketScience\Car.cs" />
+    <Compile Include="RocketScience\City.cs" />
+    <Compile Include="RocketScience\Commands\CarsCommand.cs" />
+    <Compile Include="RocketScience\Commands\DescribeWorldCommand.cs" />
+    <Compile Include="RocketScience\Commands\HomeCommand.cs" />
+    <Compile Include="RocketScience\Commands\LoadWorldCommand.cs" />
+    <Compile Include="RocketScience\Commands\MoveCommand.cs" />
+    <Compile Include="RocketScience\Game.cs" />
+    <Compile Include="RocketScience\MapGraph.cs" />
+    <Compile Include="RocketScience\Responses\CarsResponse.cs" />
+    <Compile Include="RocketScience\Responses\DescribeWorldResponse.cs" />
+    <Compile Include="RocketScience\Responses\HomeResponse.cs" />
+    <Compile Include="RocketScience\Responses\MoveResponse.cs" />
+    <Compile Include="RocketScience\Responses\WorldResponse.cs" />
+    <Compile Include="RocketScience\Road.cs" />
+    <Compile Include="RocketScience\RouteFinder.cs" />
     <Compile Include="VisualizationForm.cs">
       <SubType>Form</SubType>
     </Compile>

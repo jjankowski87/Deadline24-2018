@@ -21,7 +21,7 @@ namespace Deadline24.Core.Commands
                 throw new InvalidResponseException(string.Join(" ", respone), WaitingResponse);
             }
 
-            return new Timeout { Value = ParseFloat(respone, 1) };
+            return new Timeout { Value = ParseDouble(respone, 1) };
         }
     }
 }

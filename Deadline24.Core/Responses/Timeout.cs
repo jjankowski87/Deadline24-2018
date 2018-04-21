@@ -2,6 +2,6 @@
 {
     public class Timeout : Response
     {
-        public float Value { get; set; }
+        public double Value { get; set; }
     }
 }

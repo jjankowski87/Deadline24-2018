@@ -44,6 +44,7 @@ namespace Deadline24.Core
                         {
                             var command = new GetWaitingTimeCommand(_client);
                             var timeout = command.SendCommand();
+                            _client.ReadLine();
 
                             _game.HandleTimeout(timeout.Value);
                         }

@@ -63,6 +63,9 @@ namespace Deadline24.Core
             var responseParts = response.Split(' ');
             if (responseParts[0] != FailedResponse)
             {
+                // clean stream
+                _reader.ReadToEnd();
+
                 throw new InvalidResponseException(response, FailedResponse);
             }
 

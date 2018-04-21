@@ -25,7 +25,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dl24-lite")]
+        [global::System.Configuration.DefaultSettingValueAttribute("universum.dl24")]
         public string Server {
             get {
                 return ((string)(this["Server"]));
@@ -37,7 +37,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20007")]
         public int Port {
             get {
                 return ((int)(this["Port"]));
@@ -61,7 +61,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pass")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lfnhsxiujs")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
@@ -73,7 +73,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool UseVisualization {
             get {
                 return ((bool)(this["UseVisualization"]));

@@ -20,7 +20,7 @@ namespace Deadline24.ConsoleApp.WildWildSpace.Commands
             {
                 Dimensions = ParseInt(response, 0),
                 BoardSize = ParseInt(response, 1),
-                ScoreScaling = ParseFloat(response, 7),
+                ScoreScaling = ParseDouble(response, 7),
                 MapName = response[5]
             };
         }

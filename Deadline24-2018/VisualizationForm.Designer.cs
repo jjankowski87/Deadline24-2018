@@ -28,17 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbWorld = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbWorld)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pbWorld
-            // 
-            this.pbWorld.Location = new System.Drawing.Point(12, 12);
-            this.pbWorld.Name = "pbWorld";
-            this.pbWorld.Size = new System.Drawing.Size(758, 531);
-            this.pbWorld.TabIndex = 0;
-            this.pbWorld.TabStop = false;
             // 
             // VisualizationForm
             // 
@@ -47,16 +37,12 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(782, 555);
-            this.Controls.Add(this.pbWorld);
             this.Name = "VisualizationForm";
             this.Text = "VisualizationForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pbWorld)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pbWorld;
     }
 }

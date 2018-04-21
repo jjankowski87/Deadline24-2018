@@ -11,7 +11,7 @@ namespace Deadline24.Core
 
         void HandleException(ServerExceptionBase exception);
 
-        void HandleTimeout(float timeout);
+        void HandleTimeout(double timeout);
 
         IDictionary<Type, CommandFactoryMethod> CommandFactories { get; }
     }

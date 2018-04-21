@@ -30,10 +30,10 @@ namespace Deadline24.ConsoleApp
 
             using (var client = new Client(server, port, user, password))
             {
-                var game = new WildWildSpace.Game();
+                var game = new RocketScience.Game();
                 var gameloop = new GameLoop(game, client, visualizer);
 
-                Console.WriteLine("#### Game started ####");
+                Console.WriteLine($"#### Game started at port {port} ####");
                 gameloop.Start();
 
                 while (Console.ReadKey(true).Key != ConsoleKey.Q) { Thread.Sleep(500); }

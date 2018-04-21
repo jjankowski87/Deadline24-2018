@@ -18,7 +18,7 @@ namespace Deadline24.ConsoleApp
             var password = Properties.Settings.Default.Password;
 
             var client = new Client(server, port, user, password);
-            var game = new WildWildSpace.Game();
+            var game = new RocketScience.Game();
             _gameLoop = new GameLoop(game, client, this);
 
             _gameLoop.Start();
@@ -26,12 +26,8 @@ namespace Deadline24.ConsoleApp
 
         public void DisplayWorld(World world)
         {
-            var bitmap = world.GenerateBitmap();
+            CheckForIllegalCrossThreadCalls = false;
 
-            PictureBox.CheckForIllegalCrossThreadCalls = false;
-            pbWorld.Width = bitmap.Width;
-            pbWorld.Height = bitmap.Height;
-            pbWorld.Image = bitmap;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Deadline24.ConsoleApp.WildWildSpace.Responses
 
         public int BoardSize { get; set; }
 
-        public float ScoreScaling { get; set; }
+        public double ScoreScaling { get; set; }
 
         public string MapName { get; set; }
     }

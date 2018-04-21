@@ -28,7 +28,7 @@ namespace Deadline24.Core
             throw new InvalidResponseException(response[index], $"Item at index {index} is not integer.");
         }
 
-        protected float ParseFloat(string[] response, int index)
+        protected double ParseDouble(string[] response, int index)
         {
             float result;
             if (float.TryParse(response[index], NumberStyles.Any, UkFormatProvider, out result))
