@@ -25,21 +25,40 @@ namespace Deadline24.ConsoleApp.RocketScience
 
         public IList<City> Cities { get; }
 
-        public IList<Road> FindBestRoute(Car car, RoadStatusResponse knownRoads)
+        public IList<Road> FindBestRoute(Car car, IList<RoadStatusEntity> knownRoads, IList<int> citiesToAvoid, int homeCityId)
         {
             var routeFinder = new RouteFinder(GetCityById(car.Entity.CityId));
-            var routes = routeFinder.FindRoutes(car.Entity.FuelLevel + _random.Next(-20, 30), knownRoads)
-                .OrderByDescending(r => r.TotalCost);
-            if (!routes.Any())
+            var routes = routeFinder.FindRoutes(car.Entity.FuelLevel + _random.Next(25, 50), knownRoads, citiesToAvoid)
+                .OrderBy(r => r.TotalIncome).ToList();
+            if (routes.Any())
             {
-                routes = routeFinder.FindRoutes(80, knownRoads).OrderBy(r => r.TotalCost);
-                if (!routes.Any())
-                {
-                    return routeFinder.FindClosestBaseCity(knownRoads);
-                }
+                //return routes.First();
+                var i = _random.Next(0, routes.Count);
+                return routes[i];
             }
 
-            return routes.FirstOrDefault();
+            Console.WriteLine("Could not find route avoiding some cities.");
+            routes = routeFinder.FindRoutes(car.Entity.FuelLevel + _random.Next(25, 50), knownRoads, new List<int>())
+                .OrderBy(r => r.TotalIncome).ToList();
+            if (routes.Any())
+            {
+                //return routes.First();
+                var i = _random.Next(0, routes.Count);
+                return routes[i];
+            }
+
+            Console.WriteLine("Could not find best route, searching wider.");
+            //routes = routeFinder.FindRoutes(60, knownRoads, new List<int>(), false).OrderBy(r => r.Count).ToList();
+            //if (!routes.Any())
+            //{
+                Console.WriteLine("Could not find best route, searching closes base city.");
+                var route = routeFinder.FindRouteToCity(GetCityById(homeCityId), knownRoads);
+                return route.FirstOrDefault() ?? new List<Road>();
+
+                //return routeFinder.FindClosestBaseCity(knownRoads);
+            //}
+
+            //return routes.FirstOrDefault();
         }
 
         private City GetCityById(int cityId)
@@ -47,12 +66,12 @@ namespace Deadline24.ConsoleApp.RocketScience
             return Cities[cityId - 1];
         }
 
-        public double CalculateRouteCost(IList<Road> route, RoadStatusResponse knownRoads)
+        public double CalculateRouteCost(IList<Road> route, IList<RoadStatusEntity> knownRoads)
         {
             var currentCost = 0d;
             foreach (var road in route)
             {
-                var routeDetails = knownRoads.RoadStatuses.FirstOrDefault(r =>
+                var routeDetails = knownRoads.FirstOrDefault(r =>
                     (r.FromCityId == road.From.Id && r.ToCityId == road.To.Id) ||
                     (r.FromCityId == road.To.Id && r.ToCityId == road.From.Id));
 

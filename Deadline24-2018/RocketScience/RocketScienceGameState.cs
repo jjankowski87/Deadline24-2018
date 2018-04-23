@@ -17,6 +17,8 @@ namespace Deadline24.ConsoleApp.RocketScience
 
         public DescribeWorldResponse DescribeWorld { get; set; }
 
+        public RocketInfoEntity RocketInfo { get; set; }
+
         public IList<CarState> Cars { get; }
 
         internal void UpdateCarData(CarEntity car)

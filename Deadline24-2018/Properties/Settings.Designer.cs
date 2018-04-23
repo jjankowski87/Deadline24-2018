@@ -37,7 +37,7 @@ namespace Deadline24.ConsoleApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20007")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20006")]
         public int Port {
             get {
                 return ((int)(this["Port"]));

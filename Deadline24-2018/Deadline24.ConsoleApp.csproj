@@ -136,6 +136,7 @@
     <Compile Include="RocketScience\Commands\FoundRocketCommand.cs" />
     <Compile Include="RocketScience\Commands\GiveCommand.cs" />
     <Compile Include="RocketScience\Commands\HomeCommand.cs" />
+    <Compile Include="RocketScience\Commands\LaunchRocketCommand.cs" />
     <Compile Include="RocketScience\Commands\LoadWorldCommand.cs" />
     <Compile Include="RocketScience\Commands\MoveCommand.cs" />
     <Compile Include="RocketScience\Commands\RoadStatusCommand.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="RocketScience\Game.cs" />
     <Compile Include="RocketScience\Responses\FoundRocketResponse.cs" />
     <Compile Include="RocketScience\Responses\GiveResponse.cs" />
+    <Compile Include="RocketScience\Responses\LaunchRocketResponse.cs" />
     <Compile Include="RocketScience\Responses\RocketInfoResponse.cs" />
     <Compile Include="RocketScience\Responses\TakeResponse.cs" />
     <Compile Include="RocketScience\Responses\UpgradeCarResponse.cs" />

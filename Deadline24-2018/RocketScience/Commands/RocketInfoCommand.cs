@@ -39,7 +39,7 @@ namespace Deadline24.ConsoleApp.RocketScience.Commands
                     Lc_LawyersProtecting = ParseNullableInt(rocketLine, 10),
                     Sc_NumberOfControlingShareholders = ParseNullableInt(rocketLine, 11),
                     P_LegalProtectionLevel = ParseInt(rocketLine, 12),
-                    Lm_HighestLawyerMotivation = ParseInt(rocketLine, 13)
+                    Lm_HighestLawyerMotivation = ParseNullableInt(rocketLine, 13)
                 });
             }
 

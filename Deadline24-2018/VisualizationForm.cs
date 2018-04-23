@@ -51,6 +51,10 @@ namespace Deadline24.ConsoleApp
             lbBase.Text = gameState.HomeStats.IDh_HomeCityId.ToString();
             lbMoney.Text = $"{gameState.HomeStats.Ch_Amount}$";
             lbUpgradeCost.Text = $"{gameState.DescribeWorld.Sue_CarUpgradeCost}$";
+            lbLaunchCost.Text = $"{gameState.DescribeWorld.Sr_AmountToDepositBeforeLaunch}$";
+            lbLaunchTax.Text = $"{gameState.DescribeWorld.Sf_AmountForTaxes}$";
+            lbCityId.Text = gameState.RocketInfo?.CityId.ToString() ?? "X";
+            lbDeposit.Text = $"{gameState.RocketInfo?.Dt_TotalDeposit ?? 0} $";
 
             var moneyDiff = gameState.HomeStats.Ch_Amount - _lastAmount;
             if (_lastAmount != gameState.HomeStats.Ch_Amount)

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">universum.dl24</Value>
     </Setting>
     <Setting Name="Port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20007</Value>
+      <Value Profile="(Default)">20006</Value>
     </Setting>
     <Setting Name="User" Type="System.String" Scope="User">
       <Value Profile="(Default)">team3</Value>
