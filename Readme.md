@@ -1,0 +1,1 @@
+Helper framework for Deadline24 contest organized by Future Processing

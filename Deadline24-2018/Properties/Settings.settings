@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">universum.dl24</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20007</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="User" Type="System.String" Scope="User">
-      <Value Profile="(Default)">team3</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">lfnhsxiujs</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UseVisualization" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
